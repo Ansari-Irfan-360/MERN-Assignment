@@ -17,7 +17,7 @@ const App = () => {
   const [totalTransactions, setTotalTransactions] = useState(0); 
   const [perPage] = useState(10);
   
-  const backendURL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+  const backendURL = "https://mern-assignment-4i2l.onrender.com"; // for local hosting use "http://localhost:5000"
 
   const fetchTransactions = async () => {
     try {
