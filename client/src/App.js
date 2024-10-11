@@ -15,11 +15,13 @@ const App = () => {
   const [pieChartData, setPieChartData] = useState([]);
   const [page, setPage] = useState(1); 
   const [totalTransactions, setTotalTransactions] = useState(0); 
-  const [perPage] = useState(10); 
+  const [perPage] = useState(10);
+  
+  const backendURL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
 
   const fetchTransactions = async () => {
     try {
-      const { data } = await axios.get('http://localhost:5000/transactions', {
+      const { data } = await axios.get('${backendURL}/transactions', {
         params: { month, search, page, perPage }
       });
       console.log("Fetched Transactions:", data); 
@@ -32,7 +34,7 @@ const App = () => {
 
   const fetchStatistics = async () => {
     try {
-      const { data } = await axios.get('http://localhost:5000/statistics', {
+      const { data } = await axios.get('${backendURL}/statistics', {
         params: { month }
       });
       setStatistics(data);
@@ -43,7 +45,7 @@ const App = () => {
 
   const fetchBarChartData = async () => {
     try {
-      const { data } = await axios.get('http://localhost:5000/barchart', {
+      const { data } = await axios.get('${backendURL}/barchart', {
         params: { month }
       });
       setBarChartData(data);
@@ -54,7 +56,7 @@ const App = () => {
 
   const fetchPieChartData = async () => {
     try {
-      const { data } = await axios.get('http://localhost:5000/piechart', {
+      const { data } = await axios.get('${backendURL}/piechart', {
         params: { month }
       });
       setPieChartData(data);
