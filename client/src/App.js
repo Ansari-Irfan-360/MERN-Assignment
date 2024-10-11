@@ -17,11 +17,11 @@ const App = () => {
   const [totalTransactions, setTotalTransactions] = useState(0); 
   const [perPage] = useState(10);
   
-  const backendURL = "https://mern-assignment-4i2l.onrender.com"; // for local hosting use "http://localhost:5000"
+  const backendURL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
 
   const fetchTransactions = async () => {
     try {
-      const { data } = await axios.get('${backendURL}/transactions', {
+      const { data } = await axios.get(`${backendURL}/transactions`, {
         params: { month, search, page, perPage }
       });
       console.log("Fetched Transactions:", data); 
@@ -34,7 +34,7 @@ const App = () => {
 
   const fetchStatistics = async () => {
     try {
-      const { data } = await axios.get('${backendURL}/statistics', {
+      const { data } = await axios.get(`${backendURL}/statistics`, {
         params: { month }
       });
       setStatistics(data);
@@ -45,7 +45,7 @@ const App = () => {
 
   const fetchBarChartData = async () => {
     try {
-      const { data } = await axios.get('${backendURL}/barchart', {
+      const { data } = await axios.get(`${backendURL}/barchart`, {
         params: { month }
       });
       setBarChartData(data);
@@ -56,7 +56,7 @@ const App = () => {
 
   const fetchPieChartData = async () => {
     try {
-      const { data } = await axios.get('${backendURL}/piechart', {
+      const { data } = await axios.get(`${backendURL}/piechart`, {
         params: { month }
       });
       setPieChartData(data);
